@@ -1,12 +1,13 @@
-import { CartProvider } from 'components/cart/cart-context';
-import { Navbar } from 'components/layout/navbar';
-import { WelcomeToast } from 'components/welcome-toast';
-import { GeistSans } from 'geist/font/sans';
-import { getCart } from 'lib/shopify';
-import { ReactNode } from 'react';
-import { Toaster } from 'sonner';
-import './globals.css';
-import { baseUrl } from 'lib/utils';
+import { CartProvider } from "components/cart/cart-context";
+import { Navbar } from "components/layout/navbar";
+import { WelcomeToast } from "components/welcome-toast";
+import { GeistSans } from "geist/font/sans";
+import { getCart } from "lib/shopify";
+import { baseUrl } from "lib/utils";
+import { Bona_Nova_SC } from "next/font/google";
+import { ReactNode } from "react";
+import { Toaster } from "sonner";
+import "./globals.css";
 
 const { SITE_NAME } = process.env;
 
@@ -14,16 +15,22 @@ export const metadata = {
   metadataBase: new URL(baseUrl),
   title: {
     default: SITE_NAME!,
-    template: `%s | ${SITE_NAME}`
+    template: `%s | ${SITE_NAME}`,
   },
   robots: {
     follow: true,
-    index: true
-  }
+    index: true,
+  },
 };
 
+const bonanovaSC = Bona_Nova_SC({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-bonanova-sc",
+});
+
 export default async function RootLayout({
-  children
+  children,
 }: {
   children: ReactNode;
 }) {
@@ -31,8 +38,15 @@ export default async function RootLayout({
   const cart = getCart();
 
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
       <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+        <video
+          src="/assets/portia-bg-video.mp4"
+          autoPlay
+          loop
+          muted
+          className="absolute top-0 left-0 w-screen h-screen object-cover z-[-1]"
+        />
         <CartProvider cartPromise={cart}>
           <Navbar />
           <main>
