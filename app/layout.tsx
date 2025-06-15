@@ -1,4 +1,5 @@
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
@@ -9,6 +10,7 @@ import { Bona_Nova_SC } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { launchedSiteFlag } from "./flags/flags";
 
 const { SITE_NAME } = process.env;
 
@@ -37,6 +39,8 @@ export default async function RootLayout({
 }) {
   // Don't await the fetch, pass the Promise to the context provider
   const cart = getCart();
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+  const isLaunched = await launchedSiteFlag();
 
   return (
     <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
@@ -49,14 +53,29 @@ export default async function RootLayout({
           muted
           className="absolute top-0 left-0 w-screen h-screen object-cover z-[-1]"
         />
-        <CartProvider cartPromise={cart}>
-          <Navbar />
-          <main>
-            {children}
-            <Toaster closeButton />
-            <WelcomeToast />
-          </main>
-        </CartProvider>
+        {isLaunched ? (
+          <CartProvider cartPromise={cart}>
+            <Navbar />
+            <main>
+              {children}
+              <Toaster closeButton />
+              <WelcomeToast />
+            </main>
+          </CartProvider>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-screen text-white">
+            <h1 className="text-4xl font-bold font-bonanova-sc">
+              PORTIA VESTIDOS
+            </h1>
+            <h3 className="text-2xl font-bold font-bonanova-sc">
+              Se viene algo muy bonito!
+            </h3>
+            <p className="text-lg font-bonanova-sc">
+              Estamos desarrollando el sitio, pronto estará disponible
+            </p>
+          </div>
+        )}
+        {shouldInjectToolbar && <VercelToolbar />}
       </body>
     </html>
   );
