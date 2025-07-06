@@ -13,7 +13,7 @@ export async function Navbar() {
   const menu = await getMenu("next-js-frontend-header-menu");
 
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6 pb-6 lg:pb-6 bg-gradient-to-b from-rose-300/50 to-primary-200/20 backdrop-blur-lg">
+    <nav className="relative flex items-center justify-between p-4 lg:px-6 pb-6 lg:pb-6 bg-gradient-to-b from-primary/100 to-primary/10 backdrop-blur-lg ">
       <div className="block flex-none md:hidden">
         <Suspense fallback={null}>
           <MobileMenu menu={menu} />
@@ -27,7 +27,7 @@ export async function Navbar() {
             className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
           >
             <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
+            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block text-foreground">
               {SITE_NAME}
             </div>
           </Link>
@@ -38,7 +38,7 @@ export async function Navbar() {
                   <Link
                     href={item.path}
                     prefetch={true}
-                    className="text-primary-200 underline-offset-4 hover:text-primary-800 hover:underline dark:text-primary-200 dark:hover:text-primary-100"
+                    className="text-foreground/80 underline-offset-4 hover:text-primary hover:underline transition-colors"
                   >
                     {item.title}
                   </Link>

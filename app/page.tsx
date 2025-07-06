@@ -1,5 +1,4 @@
 import { Carousel } from "components/carousel";
-import { ThreeItemGrid } from "components/grid/three-items";
 import Footer from "components/layout/footer";
 import Hero from "components/layout/hero/hero";
 
@@ -14,8 +13,27 @@ export const metadata = {
 export default function HomePage() {
   return (
     <>
-      <ThreeItemGrid />
-      <Hero />
+      <video
+        src="/assets/portia-bg-video.mp4"
+        autoPlay
+        loop
+        muted
+        className="absolute top-0 left-0 w-screen h-screen object-cover z-[-1]"
+      />
+      <Hero
+        title="Vestidos de Ensueño"
+        description="En el corazón de la Patagonia, donde las montañas abrazan tus sueños"
+        links={[
+          {
+            label: "Ver Colección",
+            href: "/collections/novias",
+          },
+          {
+            label: "Agendar Cita",
+            href: "/contact",
+          },
+        ]}
+      />
       <Carousel />
       <Footer />
     </>

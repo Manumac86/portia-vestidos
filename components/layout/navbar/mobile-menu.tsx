@@ -35,7 +35,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-primary-200 text-black transition-colors hover:border-primary-300 md:hidden dark:border-primary-800 dark:text-white dark:hover:border-primary-700"
+        className="flex h-11 w-11 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary md:hidden"
       >
         <Bars3Icon className="h-4" />
       </button>
@@ -61,10 +61,10 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-primary-950">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-background pb-6">
               <div className="p-4">
                 <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-primary-200 text-black transition-colors hover:border-primary-300 dark:border-primary-800 dark:text-white dark:hover:border-primary-700"
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-border text-foreground transition-colors hover:border-primary"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >
@@ -80,7 +80,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <ul className="flex w-full flex-col">
                     {menu.map((item: Menu) => (
                       <li
-                        className="py-2 text-xl text-black transition-colors hover:text-primary-600 dark:text-white dark:hover:text-primary-300"
+                        className="py-2 text-xl text-foreground transition-colors hover:text-primary"
                         key={item.title}
                       >
                         <Link

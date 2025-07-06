@@ -1,10 +1,19 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export default function Hero() {
+export default function Hero({
+  title,
+  description,
+  links,
+}: {
+  title: string;
+  description: string;
+  links: { label: string; href: string }[];
+}) {
   const [hero, setHero] = useState(false);
-
+  const router = useRouter();
   useEffect(() => {
     setTimeout(() => {
       setHero(true);
@@ -14,28 +23,27 @@ export default function Hero() {
   return (
     <>
       <div
-        className={`${hero ? "opacity-100" : "opacity-0"} h-[95vh] font-bonanova-sc flex flex-col justify-center items-center relative z-10 text-center text-rose-200 max-w-6xl mx-auto px-4 transition-opacity duration-2000`}
+        className={`${hero ? "opacity-100" : "opacity-0"} h-[calc(100vh-85px)] font-bonanova-sc flex flex-col justify-center items-center relative z-10 text-center text-white max-w-6xl mx-auto px-4 transition-opacity duration-2000`}
       >
-        <h2 className="text-6xl md:text-8xl font-bold mb-8 tracking-wide">
-          Vestidos de Ensueño
+        <h2 className="text-6xl md:text-8xl font-bold mb-8 tracking-wide text-primary/75 drop-shadow-lg">
+          {title}
         </h2>
-        <p className="text-2xl md:text-3xl mb-12 font-light tracking-wide max-w-2xl">
-          En el corazón de la Patagonia, donde las montañas abrazan tus sueños
+        <p className="text-2xl md:text-3xl mb-12 font-light tracking-wide max-w-2xl text-primary/80 drop-shadow-md">
+          {description}
         </p>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <Button
-            size="lg"
-            className="bg-rose-200 hover:bg-rose-300 text-primary-800 px-12 py-4 text-lg font-medium hover:text-gray-800"
-          >
-            Ver Colección
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-2 border-rose-200 text-primary-200 hover:bg-rose-200 hover:text-gray-800 px-12 py-4 text-lg font-medium bg-transparent"
-          >
-            Agendar Cita
-          </Button>
+          {links.map((link, index) => (
+            <Button
+              key={index}
+              size="lg"
+              className={`${index === 0 ? "bg-primary hover:bg-primary/70 text-primary-foreground" : "bg-secondary hover:bg-secondary/70 text-secondary-foreground"} px-12 py-4 text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl`}
+              onClick={() => {
+                router.push(`${link.href}#top`);
+              }}
+            >
+              {link.label}
+            </Button>
+          ))}
         </div>
       </div>
     </>

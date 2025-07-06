@@ -56,7 +56,7 @@ export function Gallery({
           const videoSource =
             item.sources.find(
               (source) =>
-                source.format === "mp4" || source.mimeType === "video/mp4",
+                source.format === "mp4" || source.mimeType === "video/mp4"
             ) || item.sources[0];
 
           return {
@@ -96,12 +96,12 @@ export function Gallery({
 
   return (
     <form>
-      <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
+      <div className="relative aspect-square h-full w-full overflow-hidden rounded-lg border-2 border-secondary/50">
         {currentItem && (
           <>
             {currentItem.type === "video" && currentItem.videoUrl ? (
               <video
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover"
                 controls
                 autoPlay
                 muted
@@ -113,7 +113,7 @@ export function Gallery({
               </video>
             ) : (
               <Image
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover"
                 fill
                 sizes="(min-width: 1024px) 66vw, 100vw"
                 alt={currentItem.altText}

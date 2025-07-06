@@ -44,41 +44,34 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
-      <body className="bg-primary text-primary-200 selection:bg-primary-300 dark:bg-primary dark:text-white dark:selection:bg-primary-500 dark:selection:text-white">
-        <SpeedInsights />
-        <video
-          src="/assets/portia-bg-video.mp4"
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-screen h-screen object-cover z-[-1]"
-        />
+      <body className="bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
         {isLaunched ? (
           <CartProvider cartPromise={cart}>
             <Navbar />
             <main>
-              <div
-                className={`absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 transition-opacity duration-1000 -z-1`}
-              />
+              {/* <div
+                className={`absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 transition-opacity duration-1000 -z-10`}
+              /> */}
               {children}
               <Toaster closeButton />
               <WelcomeToast />
             </main>
           </CartProvider>
         ) : (
-          <div className="flex flex-col items-center justify-center h-screen text-primary-200">
-            <h1 className="text-4xl font-bold font-bonanova-sc">
+          <div className="flex flex-col items-center justify-center h-screen text-white">
+            <h1 className="text-4xl font-bold font-bonanova-sc drop-shadow-lg">
               PORTIA VESTIDOS
             </h1>
-            <h3 className="text-2xl font-bold font-bonanova-sc">
+            <h3 className="text-2xl font-bold font-bonanova-sc drop-shadow-md">
               Se viene algo muy bonito!
             </h3>
-            <p className="text-lg font-bonanova-sc">
+            <p className="text-lg font-bonanova-sc drop-shadow-md">
               Estamos desarrollando el sitio, pronto estará disponible
             </p>
           </div>
         )}
         {shouldInjectToolbar && <VercelToolbar />}
+        <SpeedInsights />
       </body>
     </html>
   );
