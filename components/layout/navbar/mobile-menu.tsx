@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import { Fragment, Suspense, useEffect, useState } from 'react';
+import { Dialog, Transition } from "@headlessui/react";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Fragment, Suspense, useEffect, useState } from "react";
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import { Menu } from 'lib/shopify/types';
-import Search, { SearchSkeleton } from './search';
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Menu } from "lib/shopify/types";
+import Search, { SearchSkeleton } from "./search";
 
 export default function MobileMenu({ menu }: { menu: Menu[] }) {
   const pathname = usePathname();
@@ -22,8 +22,8 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
         setIsOpen(false);
       }
     };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [isOpen]);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
+        className="flex h-11 w-11 items-center justify-center rounded-md border border-primary-200 text-black transition-colors hover:border-primary-300 md:hidden dark:border-primary-800 dark:text-white dark:hover:border-primary-700"
       >
         <Bars3Icon className="h-4" />
       </button>
@@ -61,10 +61,10 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
             leaveFrom="translate-x-0"
             leaveTo="translate-x-[-100%]"
           >
-            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-black">
+            <Dialog.Panel className="fixed bottom-0 left-0 right-0 top-0 flex h-full w-full flex-col bg-white pb-6 dark:bg-primary-950">
               <div className="p-4">
                 <button
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors dark:border-neutral-700 dark:text-white"
+                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-md border border-primary-200 text-black transition-colors hover:border-primary-300 dark:border-primary-800 dark:text-white dark:hover:border-primary-700"
                   onClick={closeMobileMenu}
                   aria-label="Close mobile menu"
                 >
@@ -80,10 +80,14 @@ export default function MobileMenu({ menu }: { menu: Menu[] }) {
                   <ul className="flex w-full flex-col">
                     {menu.map((item: Menu) => (
                       <li
-                        className="py-2 text-xl text-black transition-colors hover:text-neutral-500 dark:text-white"
+                        className="py-2 text-xl text-black transition-colors hover:text-primary-600 dark:text-white dark:hover:text-primary-300"
                         key={item.title}
                       >
-                        <Link href={item.path} prefetch={true} onClick={closeMobileMenu}>
+                        <Link
+                          href={item.path}
+                          prefetch={true}
+                          onClick={closeMobileMenu}
+                        >
                           {item.title}
                         </Link>
                       </li>

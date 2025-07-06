@@ -9,8 +9,8 @@ import { baseUrl } from "lib/utils";
 import { Bona_Nova_SC } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
-import "./globals.css";
 import { launchedSiteFlag } from "./flags/flags";
+import "./globals.css";
 
 const { SITE_NAME } = process.env;
 
@@ -44,7 +44,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <body className="bg-primary text-primary-200 selection:bg-primary-300 dark:bg-primary dark:text-white dark:selection:bg-primary-500 dark:selection:text-white">
         <SpeedInsights />
         <video
           src="/assets/portia-bg-video.mp4"
@@ -57,13 +57,16 @@ export default async function RootLayout({
           <CartProvider cartPromise={cart}>
             <Navbar />
             <main>
+              <div
+                className={`absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 transition-opacity duration-1000 -z-1`}
+              />
               {children}
               <Toaster closeButton />
               <WelcomeToast />
             </main>
           </CartProvider>
         ) : (
-          <div className="flex flex-col items-center justify-center h-screen text-white">
+          <div className="flex flex-col items-center justify-center h-screen text-primary-200">
             <h1 className="text-4xl font-bold font-bonanova-sc">
               PORTIA VESTIDOS
             </h1>

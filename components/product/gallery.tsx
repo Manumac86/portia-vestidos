@@ -56,7 +56,7 @@ export function Gallery({
           const videoSource =
             item.sources.find(
               (source) =>
-                source.format === "mp4" || source.mimeType === "video/mp4"
+                source.format === "mp4" || source.mimeType === "video/mp4",
             ) || item.sources[0];
 
           return {
