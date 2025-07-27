@@ -19,7 +19,7 @@ const Price = ({
     }).format(parseFloat(amount))}`}
     <span
       className={clsx("ml-1 inline", currencyCodeClassName)}
-    >{`${currencyCode}`}</span>
+    >{`${currencyCode === "ARS" ? "" : currencyCode}`}</span>
   </p>
 );
 

@@ -35,7 +35,7 @@ export function VariantSelector({
         ...accumulator,
         [option.name.toLowerCase()]: option.value,
       }),
-      {},
+      {}
     ),
   }));
 
@@ -56,14 +56,14 @@ export function VariantSelector({
                 options.find(
                   (option) =>
                     option.name.toLowerCase() === key &&
-                    option.values.includes(value),
-                ),
+                    option.values.includes(value)
+                )
             );
             const isAvailableForSale = combinations.find((combination) =>
               filtered.every(
                 ([key, value]) =>
-                  combination[key] === value && combination.availableForSale,
-              ),
+                  combination[key] === value && combination.availableForSale
+              )
             );
 
             // The option is active if it's in the selected options.
@@ -82,12 +82,12 @@ export function VariantSelector({
                 className={clsx(
                   "flex min-w-[48px] items-center justify-center rounded-full border bg-neutral-100 px-2 py-1 text-sm dark:border-neutral-800 dark:bg-neutral-900",
                   {
-                    "cursor-default ring-2 ring-blue-600": isActive,
-                    "ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-blue-600":
+                    "cursor-default ring-2 ring-primary": isActive,
+                    "ring-1 ring-transparent transition duration-300 ease-in-out hover:ring-primary":
                       !isActive && isAvailableForSale,
                     "relative z-10 cursor-not-allowed overflow-hidden bg-neutral-100 text-neutral-500 ring-1 ring-neutral-300 before:absolute before:inset-x-0 before:-z-10 before:h-px before:-rotate-45 before:bg-neutral-300 before:transition-transform dark:bg-neutral-900 dark:text-neutral-400 dark:ring-neutral-700 dark:before:bg-neutral-700":
                       !isAvailableForSale,
-                  },
+                  }
                 )}
               >
                 {value}

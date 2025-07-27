@@ -16,7 +16,7 @@ function SubmitButton({
   selectedVariantId: string | undefined;
 }) {
   const buttonClasses =
-    "relative flex w-full items-center justify-center rounded-full bg-blue-600 p-4 tracking-wide text-white";
+    "relative flex w-full items-center justify-center rounded-full bg-primary p-4 tracking-wide text-foreground";
   const disabledClasses = "cursor-not-allowed opacity-60 hover:opacity-60";
 
   if (!availableForSale) {
@@ -65,14 +65,14 @@ export function AddToCart({ product }: { product: Product }) {
 
   const variant = variants.find((variant: ProductVariant) =>
     variant.selectedOptions.every(
-      (option) => option.value === state[option.name.toLowerCase()],
-    ),
+      (option) => option.value === state[option.name.toLowerCase()]
+    )
   );
   const defaultVariantId = variants.length === 1 ? variants[0]?.id : undefined;
   const selectedVariantId = variant?.id || defaultVariantId;
   const addItemAction = formAction.bind(null, selectedVariantId);
   const finalVariant = variants.find(
-    (variant) => variant.id === selectedVariantId,
+    (variant) => variant.id === selectedVariantId
   )!;
 
   return (

@@ -27,6 +27,9 @@
   .font-bonanova-sc {
     font-family: var(--font-bonanova-sc);
   }
+  .font-oswald {
+    font-family: var(--font-oswald);
+  }
 }
 
 @media (prefers-color-scheme: dark) {

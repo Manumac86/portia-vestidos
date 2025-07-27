@@ -3,10 +3,9 @@ import { VercelToolbar } from "@vercel/toolbar/next";
 import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
-import { GeistSans } from "geist/font/sans";
 import { getCart } from "lib/shopify";
 import { baseUrl } from "lib/utils";
-import { Bona_Nova_SC } from "next/font/google";
+import { Bona_Nova_SC, Oswald } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
 import { launchedSiteFlag } from "./flags/flags";
@@ -32,6 +31,12 @@ const bonanovaSC = Bona_Nova_SC({
   variable: "--font-bonanova-sc",
 });
 
+const oswald = Oswald({
+  weight: ["400", "700", "500", "300", "200"],
+  subsets: ["latin"],
+  variable: "--font-oswald",
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -43,8 +48,8 @@ export default async function RootLayout({
   const isLaunched = await launchedSiteFlag();
 
   return (
-    <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
-      <body className="bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+    <html lang="en" className={`${bonanovaSC.variable} ${oswald.variable}`}>
+      <body className="bg-gradient-to-b from-white/100 to-primary text-foreground selection:bg-primary/20 selection:text-foreground">
         {isLaunched ? (
           <CartProvider cartPromise={cart}>
             <Navbar />
@@ -59,13 +64,13 @@ export default async function RootLayout({
           </CartProvider>
         ) : (
           <div className="flex flex-col items-center justify-center h-screen text-white">
-            <h1 className="text-4xl font-bold font-bonanova-sc drop-shadow-lg">
+            <h1 className="text-4xl font-bold font-oswald drop-shadow-lg">
               PORTIA VESTIDOS
             </h1>
-            <h3 className="text-2xl font-bold font-bonanova-sc drop-shadow-md">
+            <h3 className="text-2xl font-bold font-oswald drop-shadow-md">
               Se viene algo muy bonito!
             </h3>
-            <p className="text-lg font-bonanova-sc drop-shadow-md">
+            <p className="text-lg font-oswald drop-shadow-md">
               Estamos desarrollando el sitio, pronto estará disponible
             </p>
           </div>

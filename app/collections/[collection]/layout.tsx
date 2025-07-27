@@ -17,15 +17,15 @@ export default async function Layout({
     collectionData?.description ||
     "Para tu día más especial, elegí el vestido que te hace sentir única";
   return (
-    <div id="top" className="h-screen">
-      <Image
-        src="/assets/novias.jpg"
-        alt="Portia Vestidos"
-        width={1920}
-        height={1080}
-        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
-      />
+    <div id="top">
       <div className="w-full relative">
+        <Image
+          src={`/assets/${collection.collection}.png`}
+          alt="Portia Vestidos"
+          width={1280}
+          height={720}
+          className="absolute -top-[85px] left-0 w-full h-[calc(100vh+5px)] object-cover z-[-1]"
+        />
         <Hero
           title={title}
           description={description}
@@ -35,8 +35,9 @@ export default async function Layout({
               href: `/collections/${collection.collection}#collection`,
             },
           ]}
+          alignment="center"
         />
-        <div className="mx-8 max-w-7xl py-20 sm:mx-auto">{children}</div>
+        <div className="mx-8 max-w-7xl sm:mx-auto">{children}</div>
       </div>
       <Footer />
     </div>

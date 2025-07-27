@@ -44,13 +44,19 @@ export default async function CollectionPage({
   const [firstProduct, secondProduct, thirdProduct] = products.slice(0, 3);
 
   return (
-    <div id="collection" className="flex flex-col gap-4">
-      <h1 className="text-4xl font-bold">{title}</h1>
-      <p className="text-lg">{description}</p>
+    <div
+      id="collection"
+      className="flex flex-col gap-4 py-20 font-oswald sm:max-w-7xl sm:mx-auto"
+    >
+      <h1 className="text-4xl font-normal">{title}</h1>
+      <p className="text-lg font-light">{description}</p>
       <div className="gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
           <Link href={`/product/${product.handle}`} key={product.id}>
-            <Card key={product.id} className="w-full h-full p-0 relative">
+            <Card
+              key={product.id}
+              className="w-full h-full p-0 relative hover:scale-105 transition-all duration-300"
+            >
               <CardContent className="p-0 h-full">
                 <img
                   src={product.featuredImage.url || ""}
@@ -60,7 +66,7 @@ export default async function CollectionPage({
                   className="w-full h-full object-cover rounded-lg"
                 />
                 <CardFooter className="p-4 absolute bottom-0 left-0 right-0 flex justify-end">
-                  <CardTitle className="text-lg font-bold text-secondary-foreground bg-primary/85 px-4 py-2 rounded-lg">
+                  <CardTitle className="text-lg font-light text-secondary-foreground bg-primary/85 px-4 py-2 rounded-full">
                     {product.title}
                   </CardTitle>
                 </CardFooter>

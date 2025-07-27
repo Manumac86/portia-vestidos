@@ -7,10 +7,12 @@ export default function Hero({
   title,
   description,
   links,
+  alignment = "start",
 }: {
   title: string;
   description: string;
   links: { label: string; href: string }[];
+  alignment?: "start" | "center";
 }) {
   const [hero, setHero] = useState(false);
   const router = useRouter();
@@ -23,20 +25,24 @@ export default function Hero({
   return (
     <>
       <div
-        className={`${hero ? "opacity-100" : "opacity-0"} h-[calc(100vh-85px)] font-bonanova-sc flex flex-col justify-center items-center relative z-10 text-center text-white max-w-6xl mx-auto px-4 transition-opacity duration-2000`}
+        className={`${hero ? "opacity-100" : "opacity-0"} h-[calc(100vh-85px)] pb-24 sm:pb-48 mx-auto px-4 font-oswald flex flex-col justify-end items-${alignment} relative z-10 text-white transition-opacity duration-2000 xl:max-w-7xl`}
       >
-        <h2 className="text-6xl md:text-8xl font-bold mb-8 tracking-wide text-primary/75 drop-shadow-lg">
+        <h2 className="text-6xl md:text-8xl mb-8 tracking-wide drop-shadow-lg font-oswald">
           {title}
         </h2>
-        <p className="text-2xl md:text-3xl mb-12 font-light tracking-wide max-w-2xl text-primary/80 drop-shadow-md">
+        <p
+          className={`text-2xl md:text-3xl mb-12 font-light tracking-wide max-w-lg drop-shadow-md ${
+            alignment === "center" ? "text-center" : "text-left"
+          }`}
+        >
           {description}
         </p>
-        <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <div className={`flex gap-2 justify-${alignment} sm:flex-row sm:gap-6`}>
           {links.map((link, index) => (
             <Button
               key={index}
               size="lg"
-              className={`${index === 0 ? "bg-primary hover:bg-primary/70 text-primary-foreground" : "bg-secondary hover:bg-secondary/70 text-secondary-foreground"} px-12 py-4 text-lg font-medium transition-all duration-300 shadow-lg hover:shadow-xl`}
+              className={`${index === 0 ? "bg-primary hover:bg-primary/70 text-primary-foreground" : "bg-black/50 hover:bg-secondary/50 text-primary"} rounded-full px-12 py-4 text-lg font-light transition-all duration-300 shadow-lg hover:shadow-xl`}
               onClick={() => {
                 router.push(`${link.href}#top`);
               }}
