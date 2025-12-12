@@ -3,14 +3,13 @@ import { VercelToolbar } from "@vercel/toolbar/next";
 import { CartProvider } from "components/cart/cart-context";
 import { Navbar } from "components/layout/navbar";
 import { WelcomeToast } from "components/welcome-toast";
-import { GeistSans } from "geist/font/sans";
 import { getCart } from "lib/shopify";
 import { baseUrl } from "lib/utils";
-import { Bona_Nova_SC } from "next/font/google";
+import { Bona_Nova_SC, Oswald } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
-import "./globals.css";
 import { launchedSiteFlag } from "./flags/flags";
+import "./globals.css";
 
 const { SITE_NAME } = process.env;
 
@@ -32,6 +31,12 @@ const bonanovaSC = Bona_Nova_SC({
   variable: "--font-bonanova-sc",
 });
 
+const oswald = Oswald({
+  weight: ["400", "700", "500", "300", "200"],
+  subsets: ["latin"],
+  variable: "--font-oswald",
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -43,20 +48,15 @@ export default async function RootLayout({
   const isLaunched = await launchedSiteFlag();
 
   return (
-    <html lang="en" className={`${bonanovaSC.variable} ${GeistSans.variable}`}>
-      <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
-        <SpeedInsights />
-        <video
-          src="/assets/portia-bg-video.mp4"
-          autoPlay
-          loop
-          muted
-          className="absolute top-0 left-0 w-screen h-screen object-cover z-[-1]"
-        />
+    <html lang="en" className={`${bonanovaSC.variable} ${oswald.variable}`}>
+      <body className="bg-gradient-to-b from-white/100 to-primary text-foreground selection:bg-primary/20 selection:text-foreground">
         {isLaunched ? (
           <CartProvider cartPromise={cart}>
             <Navbar />
             <main>
+              {/* <div
+                className={`absolute inset-0 bg-gradient-to-r from-black/40 to-black/20 transition-opacity duration-1000 -z-10`}
+              /> */}
               {children}
               <Toaster closeButton />
               <WelcomeToast />
@@ -64,18 +64,19 @@ export default async function RootLayout({
           </CartProvider>
         ) : (
           <div className="flex flex-col items-center justify-center h-screen text-white">
-            <h1 className="text-4xl font-bold font-bonanova-sc">
+            <h1 className="text-4xl font-bold font-oswald drop-shadow-lg">
               PORTIA VESTIDOS
             </h1>
-            <h3 className="text-2xl font-bold font-bonanova-sc">
+            <h3 className="text-2xl font-bold font-oswald drop-shadow-md">
               Se viene algo muy bonito!
             </h3>
-            <p className="text-lg font-bonanova-sc">
+            <p className="text-lg font-oswald drop-shadow-md">
               Estamos desarrollando el sitio, pronto estará disponible
             </p>
           </div>
         )}
         {shouldInjectToolbar && <VercelToolbar />}
+        <SpeedInsights />
       </body>
     </html>
   );

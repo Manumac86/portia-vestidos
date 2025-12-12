@@ -345,11 +345,11 @@ export async function getCollections(): Promise<Collection[]> {
   const collections = [
     {
       handle: "",
-      title: "All",
-      description: "All products",
+      title: "Todos",
+      description: "Todos los productos",
       seo: {
-        title: "All",
-        description: "All products",
+        title: "Todos",
+        description: "Todos los productos",
       },
       path: "/search",
       updatedAt: new Date().toISOString(),
@@ -415,8 +415,6 @@ export async function getProduct(handle: string): Promise<Product | undefined> {
       handle,
     },
   });
-
-  console.log(res.body.data.product);
 
   return reshapeProduct(res.body.data.product, false);
 }

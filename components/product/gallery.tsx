@@ -95,13 +95,13 @@ export function Gallery({
     "h-full px-6 transition-all ease-in-out hover:scale-110 hover:text-black dark:hover:text-white flex items-center justify-center";
 
   return (
-    <form>
-      <div className="relative aspect-square h-full max-h-[550px] w-full overflow-hidden">
+    <form className="flex flex-col sm:flex-row gap-4">
+      <div className="relative aspect-[1/1.5] h-full w-full overflow-hidden">
         {currentItem && (
           <>
             {currentItem.type === "video" && currentItem.videoUrl ? (
               <video
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover rounded-2xl"
                 controls
                 autoPlay
                 muted
@@ -113,9 +113,9 @@ export function Gallery({
               </video>
             ) : (
               <Image
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover rounded-2xl"
                 fill
-                sizes="(min-width: 1024px) 66vw, 100vw"
+                sizes=" "
                 alt={currentItem.altText}
                 src={currentItem.src}
                 priority={true}
@@ -154,12 +154,12 @@ export function Gallery({
       </div>
 
       {galleryItems.length > 1 ? (
-        <ul className="my-12 flex items-center flex-wrap justify-center gap-2 overflow-auto py-1 lg:mb-0">
+        <ul className="mx-6 flex sm:flex-col items-center flex-wrap justify-start gap-2 py-1 lg:mb-0">
           {galleryItems.map((item, index) => {
             const isActive = index === imageIndex;
 
             return (
-              <li key={item.id} className="h-20 w-20">
+              <li key={item.id} className="h-32 w-32 aspect-square">
                 <button
                   formAction={() => {
                     const newState = updateImage(index.toString());
@@ -175,17 +175,17 @@ export function Gallery({
                         ? item.previewImage || item.src
                         : item.src
                     }
-                    width={80}
-                    height={80}
+                    width={120}
+                    height={120}
                     active={isActive}
                   />
-                  {item.type === "video" && (
+                  {/* {item.type === "video" && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 rounded">
                       <div className="w-6 h-6 bg-white bg-opacity-80 rounded-full flex items-center justify-center">
                         <div className="w-0 h-0 border-l-4 border-l-black border-t-2 border-t-transparent border-b-2 border-b-transparent ml-0.5"></div>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </button>
               </li>
             );

@@ -11,17 +11,13 @@ export async function Carousel() {
   if (!products?.length) return null;
 
   // Purposefully duplicating products to make the carousel loop and not run out of products on wide screens.
-  const carouselProducts = [
-    ...products,
-    ...products,
-    ...products,
-    ...products,
-    ...products,
-    ...products,
-  ];
+  const carouselProducts = [...products];
 
   return (
-    <div className="w-full overflow-x-auto pb-6 pt-1">
+    <div className="w-full overflow-x-auto mx-auto px-4 mt-6 pb-6 pt-6 xl:max-w-7xl">
+      <h2 className="text-2xl font-medium font-oswald drop-shadow-md mb-6">
+        Destacados
+      </h2>
       <ul className="flex animate-carousel gap-4">
         {carouselProducts.map((product, i) => (
           <li
