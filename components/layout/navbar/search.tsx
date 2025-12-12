@@ -16,7 +16,7 @@ export default function Search() {
         key={searchParams?.get("q")}
         type="text"
         name="q"
-        placeholder="Search for products..."
+        placeholder="Buscar vestidos..."
         autoComplete="off"
         defaultValue={searchParams?.get("q") || ""}
         className="text-md w-full rounded-lg px-4 py-2 text-muted-foreground border border-muted-foreground placeholder:text-muted-foreground focus:border focus:border-primary focus:ring-2 focus:ring-primary focus-visible:ring-0! focus-visible:ring-offset-0! md:text-sm"
@@ -32,7 +32,7 @@ export function SearchSkeleton() {
   return (
     <form className="w-max-[550px] relative w-full lg:w-80 xl:w-full">
       <input
-        placeholder="Search for products..."
+        placeholder="Buscar vestidos..."
         className="w-full rounded-lg border border-border bg-background px-4 py-2 text-sm text-foreground placeholder:text-muted-foreground"
       />
       <div className="absolute right-0 top-0 mr-3 flex h-full items-center">

@@ -20,7 +20,7 @@ export async function Navbar() {
         </Suspense>
       </div>
       <div className="flex w-full items-center justify-between mx-auto px-4 xl:max-w-7xl">
-        <div className="flex w-full md:w-1/3">
+        <div className="flex w-full gap-2 md:w-1/3">
           <Link
             href="/"
             prefetch={true}
@@ -37,9 +37,9 @@ export async function Navbar() {
             </div> */}
           </Link>
           {menu.length ? (
-            <ul className="hidden gap-6 text-sm md:flex md:items-center">
+            <ul className="hidden gap-4 text-sm md:flex md:items-end">
               {menu.map((item: Menu) => (
-                <li key={item.title}>
+                <li key={item.title} className="px-2">
                   <Link
                     href={item.path}
                     prefetch={true}

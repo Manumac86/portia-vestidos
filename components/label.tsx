@@ -14,19 +14,16 @@ const Label = ({
 }) => {
   return (
     <div
-      className={clsx(
-        "absolute -bottom-6 left-0 flex w-full py-2 @container/label",
-        {
-          "": position === "center",
-        }
-      )}
+      className={clsx("flex w-full p-2 ", {
+        "": position === "center",
+      })}
     >
-      <div className="w-full pt-6 flex flex-col items-start justify-start text-xs font-semibold text-black dark:text-white">
-        <h3 className="mr-4 line-clamp-2 grow pl-2 leading-none tracking-tight text-foreground font-normal text-[16px]">
+      <div className="w-full h-full flex flex-col gap-2 items-start justify-center font-semibold text-muted dark:text-muted">
+        <h3 className="line-clamp-2 grow leading-none tracking-tight text-muted font-normal text-lg">
           {title}
         </h3>
         <Price
-          className="flex-none p-2 text-foreground font-normal text-sm"
+          className="flex-none text-muted font-normal text-lg"
           amount={amount}
           currencyCode={currencyCode}
           currencyCodeClassName="hidden @[275px]/label:inline"
